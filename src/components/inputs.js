@@ -45,36 +45,36 @@ export default function Inputs() {
     resultRef.current?.scrollIntoView({ behavior: "smooth" });
     setIsLoading(true);
 
-    // const formData = new FormData();
-    // formData.append("photo", photo); // File 객체
-    // formData.append("location", location);
-    // formData.append("date", date);
-    // formData.append("temperature", temperature);
-    // formData.append("wind", wind);
-    // if (hazard) {
-    //   formData.append("hazard", hazard);
-    // }
+    const formData = new FormData();
+    formData.append("photo", photo); // File 객체
+    formData.append("location", location);
+    formData.append("date", date);
+    formData.append("temperature", temperature);
+    formData.append("wind", wind);
+    if (hazard) {
+      formData.append("hazard", hazard);
+    }
 
-    // try {
-    //   const res = await axios.post("/api/Prompt", formData, {
-    //     headers: { "Content-Type": "multipart/form-data" },
-    //   });
-    //   if (res.status === 200) {
-    //     console.log("Response from GPT-4o:", res.data);
-    //     setAnswer(res.data);
-    //   }
-    // } catch (error) {
-    //   console.error("Error calling GPT-4o API:", error);
-    // } finally {
-    //   setPhotoPreview(null);
-    //   setPhotoBase64("");
-    //   setLocation("");
-    //   setDate("");
-    //   setTemperature("");
-    //   setWind("");
-    //   setHazard("");
-    //   setIsLoading(false);
-    // }
+    try {
+      const res = await axios.post("/api/Prompt", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      if (res.status === 200) {
+        console.log("Response from GPT-4o:", res.data);
+        setAnswer(res.data);
+      }
+    } catch (error) {
+      console.error("Error calling GPT-4o API:", error);
+    } finally {
+      setPhotoPreview(null);
+      setPhotoBase64("");
+      setLocation("");
+      setDate("");
+      setTemperature("");
+      setWind("");
+      setHazard("");
+      setIsLoading(false);
+    }
   }
 
   return (
